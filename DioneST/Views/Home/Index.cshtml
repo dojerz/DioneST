@@ -20,7 +20,7 @@
             map.addLayer(osm);
 
             for (var i = 0; i < 100; i++) {
-                for (var j = 0; j < 100; j++) {
+                for (var j = 0; j < 500; j++) {
                     L.circle([centerOnInitLat + (i / 10), centerOnInitLon + (j / 10)], { radius: 200 }).addTo(map);
                 }
             }
