@@ -6,6 +6,21 @@
         var zoomLevOnInit = 8;
         var map;
 
+        var feliratOpt =
+            {
+                sticky: true,
+                //permanent: true,
+                opacity: 0.7
+            };
+
+        var lineOpt =
+            {
+                color: '#ff0022',
+                smoothFactor: 0,
+                weight: 6
+
+            };
+
         // git changes
         function init() {
             map = L.map('map', {
@@ -19,9 +34,16 @@
             var osm = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
             map.addLayer(osm);
 
-            for (var i = 0; i < 100; i++) {
-                for (var j = 0; j < 500; j++) {
-                    L.circle([centerOnInitLat + (i / 10), centerOnInitLon + (j / 10)], { radius: 200 }).addTo(map);
+            for (var i = 0; i < 20; i++) {
+                for (var j = 0; j < 50; j++) {
+                    L.circle([centerOnInitLat + (i / 6), centerOnInitLon + (j / 7)], { radius: 200 }).bindTooltip("tooltip text", feliratOpt).openTooltip().addTo(map);
+
+                    var latlngs = [
+                    [centerOnInitLat + ((i +2)/ 6), centerOnInitLon + (j / 7)],
+                    [centerOnInitLat + (i / 6), centerOnInitLon + ((j - 1) / 7)]
+                    ];
+
+                    L.polyline(latlngs, lineOpt).bindTooltip("jó kis linkID", feliratOpt).addTo(map);
                 }
             }
         }
